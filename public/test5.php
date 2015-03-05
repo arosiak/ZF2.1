@@ -1,5 +1,5 @@
 <?
-	// Test bez poczekalni
+	// Test bez poczekalni - branch: hotfix
 	$x = microtime();
 	for($i=1; $i<100000000; $i++) {
 		$temp = rand(1,1000000);
@@ -13,4 +13,5 @@
 	$y = (real)$y1[1] + (real)$y1[0];
 	
 	echo $y - $x;
+	echo ' fix';
 ?>
