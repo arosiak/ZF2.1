@@ -1,5 +1,5 @@
 <?
-	// Test bez poczekalni - branch: hotfix
+	// Test bez poczekalni - branch: Hotfix
 	$x = microtime();
 	for($i=1; $i<100000000; $i++) {
 		$temp = rand(1,1000000);
