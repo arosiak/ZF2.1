@@ -1,0 +1,51 @@
+<?php 
+if ($this->pageCount < 2) return;
+$urlPattern = $this->url;
+$firstUrl   = str_replace('page=%d', '', $urlPattern);
+$formatUrl  = function ($page) use ($urlPattern) {
+    return str_replace('%d', $page, $urlPattern);
+}
+?>
+<ul class="pagination">
+
+    <?php // First page link
+    if ($this->first && $this->first != $this->current): ?>
+        <li class="arrow">
+            <a href="<?php echo $firstUrl ?>" class="first">&laquo;</a>
+        </li>
+    <?php endif;
+    // Previous page
+    if ($this->previous): ?>
+        <li>
+            <a href="<?php echo (($this->previous == $this->first) ? $firstUrl : $formatUrl($this->previous)) ?>">Prev</a>
+        </li>
+    <?php endif;
+    // Numbered page links
+    foreach ($this->pagesInRange as $page):
+        if ($page == $this->current): ?>
+            <li class="current">
+                <a href="<?php echo $formatUrl($page) ?>"><?php echo $page ?></a>
+            </li>
+        <?php elseif ($page == $this->first): ?>
+            <li>
+                <a href="<?php echo $firstUrl ?>"><?php echo $page ?></a>
+            </li>
+        <?php else: ?>
+            <li>
+                <a href="<?php echo $formatUrl($page) ?>"><?php echo $page ?></a>
+            </li>
+        <?php endif ?>
+    <?php endforeach;
+    // Next page link
+    if ($this->next): ?>
+        <li>
+            <a href="<?php echo $formatUrl($this->next) ?>">Next</a>
+        </li>
+    <?php endif;
+    // Last page link
+    if ($this->last && $this->last !== $this->current): ?>
+        <li class="arrow">
+            <a href="<?php echo $formatUrl($this->last) ?>" class="last">&raquo;</a>
+        </li>
+    <?php endif; ?>
+</ul>
